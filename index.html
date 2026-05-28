@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolutor Experto de Triángulos - E.T.C. María Auxiliadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header-colegio">
+            <div class="logo-contenedor">
+                <img class="logo-escuela" src="logo_colegio.jpg" alt="Logo E.T.C. Maria Auxiliadora" onerror="this.style.display='none';">
+                <h1 class="titulo-colegio">E.T.C. Maria Auxiliadora</h1>
+            </div>
+            <div class="titulos-app">
+                <h2>Resolutor de Triángulos Experto</h2>
+                <p class="subtitle">4to Año de Telemática — Proyecto de Desarrollo</p>
+            </div>
+        </header>
+        <hr class="separador-institucional">
+
+        <div style="text-align: left; margin-bottom: 20px;">
+            <button id="btn-volver-menu" class="btn-regresar hidden" onclick="mostrarMenu()">← Volver al Menú Principal</button>
+        </div>
+
+        <div id="menu-principal">
+            <h2>Clasificación según sus Lados</h2>
+            <div class="grid-triangulos">
+                <div class="tarjeta">
+                    <h3>📐 Triángulo Equilátero</h3>
+                    <img class="img-triangulo-menu" src="equilatero.jpg" alt="Triángulo Equilátero" onerror="this.style.backgroundColor='#e17055';">
+                    <p>Tiene los 3 lados iguales y sus 3 ángulos internos miden siempre 60°.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('equilatero')">Resolver</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>📐 Triángulo Isósceles</h3>
+                    <img class="img-triangulo-menu" src="isosceles.jpg" alt="Triángulo Isósceles" onerror="this.style.backgroundColor='#2ecc71';">
+                    <p>Tiene 2 lados iguales y uno diferente. Requiere cálculo de altura por Pitágoras.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('isosceles')">Resolver</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>📐 Triángulo Escaleno</h3>
+                    <img class="img-triangulo-menu" src="escaleno.jpg" alt="Triángulo Escaleno" onerror="this.style.backgroundColor='#f1c40f';">
+                    <p>Tiene sus 3 lados y sus 3 ángulos completamente diferentes.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('escaleno')">Resolver</button>
+                </div>
+            </div>
+
+            <h2>Clasificación según sus Ángulos</h2>
+            <div class="grid-triangulos">
+                <div class="tarjeta">
+                    <h3>📏 Triángulo Rectángulo</h3>
+                    <img class="img-triangulo-menu" src="rectangulo.jpg" alt="Triángulo Rectángulo" onerror="this.style.backgroundColor='#6c5ce7';">
+                    <p>Posee un ángulo recto de 90° y permite definir las razones trigonométricas fundamentales y recíprocas.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('rectangulo')">Resolver</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>📏 Triángulo Acutángulo</h3>
+                    <img class="img-triangulo-menu" src="acutangulo.jpg" alt="Triángulo Acutángulo" onerror="this.style.backgroundColor='#2980b9';">
+                    <p>Sus 3 ángulos internos son menores a 90°. Se analiza con la Ley de los Senos y Cosenos.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('acutangulo')">Resolver</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>📏 Triángulo Obtusángulo</h3>
+                    <img class="img-triangulo-menu" src="obtusangulo.jpg" alt="Triángulo Obtusángulo" onerror="this.style.backgroundColor='#e67e22';">
+                    <p>Tiene un ángulo interno mayor a 90°. Analiza las razones en el II cuadrante.</p>
+                    <button class="btn-seleccionar" onclick="cambiarPantalla('obtusangulo')">Resolver</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pantalla-equilatero" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Equilátero</h2>
+            <div class="grupo-input">
+                <label>¿Cuánto mide uno de sus lados? (cm):</label>
+                <input type="number" id="ladoEquilatero" placeholder="Ej. 7">
+            </div>
+            <button class="btn-calcular" onclick="calcularEquilatero()">Calcular Propiedades</button>
+            <div id="res-equilatero" class="resultado-caja hidden">
+                <div id="datos-res-equilatero"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-equilatero')">📖 Mostrar Procedimiento Matemático</button>
+            </div>
+            <div id="proc-equilatero" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <div id="pantalla-isosceles" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Isósceles</h2>
+            <div class="grupo-input">
+                <label>¿Cuánto miden los lados iguales? (cm):</label>
+                <input type="number" id="ladoLadosIsosceles" placeholder="Ej. 10">
+            </div>
+            <div class="grupo-input">
+                <label>¿Cuánto mide la base? (cm):</label>
+                <input type="number" id="baseIsosceles" placeholder="Ej. 6">
+            </div>
+            <button class="btn-calcular" onclick="calcularIsosceles()">Calcular Propiedades</button>
+            <div id="res-isosceles" class="resultado-caja hidden">
+                <div id="datos-res-isosceles"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-isosceles')">📖 Mostrar Procedimiento Matemático</button>
+            </div>
+            <div id="proc-isosceles" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <div id="pantalla-escaleno" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Escaleno</h2>
+            <div class="grupo-input"><label>Lado A (Base) (cm):</label><input type="number" id="escalenoA" placeholder="Ej. 6"></div>
+            <div class="grupo-input"><label>Lado B (cm):</label><input type="number" id="escalenoB" placeholder="Ej. 5"></div>
+            <div class="grupo-input"><label>Lado C (cm):</label><input type="number" id="escalenoC" placeholder="Ej. 4"></div>
+            <button class="btn-calcular" onclick="calcularEscaleno()">Calcular Propiedades</button>
+            <div id="res-escaleno" class="resultado-caja hidden">
+                <div id="datos-res-escaleno"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-escaleno')">📖 Mostrar Procedimiento Matemático</button>
+            </div>
+            <div id="proc-escaleno" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <div id="pantalla-rectangulo" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Rectángulo</h2>
+            <div class="grupo-input"><label>Cateto 1 (Base) (cm):</label><input type="number" id="cateto1" placeholder="Ej. 4"></div>
+            <div class="grupo-input"><label>Cateto 2 (Altura) (cm):</label><input type="number" id="cateto2" placeholder="Ej. 3"></div>
+            <button class="btn-calcular" onclick="calcularRectangulo()">Calcular Propiedades</button>
+            <div id="res-rectangulo" class="resultado-caja hidden">
+                <div id="datos-res-rectangulo"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-rectangulo')">📖 Mostrar las 6 Razones Trigonométricas Paso a Paso</button>
+            </div>
+            <div id="proc-rectangulo" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <div id="pantalla-acutangulo" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Acutángulo</h2>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button type="button" id="btn-tab-lal" class="btn-procedimiento" style="margin:0; background:#2980b9;" onclick="seleccionarMetodoAcutangulo('LAL')">2 Lados y 1 Ángulo</button>
+                <button type="button" id="btn-tab-ala" class="btn-procedimiento" style="margin:0; background:#7f8c8d;" onclick="seleccionarMetodoAcutangulo('ALA')">2 Ángulos y 1 Lado</button>
+            </div>
+
+            <div id="form-acutangulo-lal">
+                <div class="grupo-input"><label>Lado A (Base) (cm):</label><input type="number" id="baseAcutangulo" placeholder="Ej. 8"></div>
+                <div class="grupo-input"><label>Lado B (cm):</label><input type="number" id="alturaAcutangulo" placeholder="Ej. 7"></div>
+                <div class="grupo-input"><label>Ángulo C entre ellos (Grados °):</label><input type="number" id="angAcutangulo" placeholder="Ej. 60"></div>
+            </div>
+
+            <div id="form-acutangulo-ala" class="hidden">
+                <div class="grupo-input"><label>Ángulo A (Grados °):</label><input type="number" id="angA_ALA" placeholder="Ej. 50"></div>
+                <div class="grupo-input"><label>Lado c (Base entre ellos) (cm):</label><input type="number" id="ladoC_ALA" placeholder="Ej. 9"></div>
+                <div class="grupo-input"><label>Ángulo B (Grados °):</label><input type="number" id="angB_ALA" placeholder="Ej. 70"></div>
+            </div>
+
+            <button class="btn-calcular" style="margin-top:10px;" onclick="procesarAcutangulo()">Calcular Propiedades</button>
+            
+            <div id="res-acutangulo" class="resultado-caja hidden">
+                <div id="datos-res-acutangulo"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-acutangulo')">📖 Mostrar Desarrollo Matemático Completo</button>
+            </div>
+            <div id="proc-acutangulo" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <div id="pantalla-obtusangulo" class="vista-resolucion hidden">
+            <h2>Resolver Triángulo Obtusángulo</h2>
+            <div class="grupo-input"><label>Lado A (Base) (cm):</label><input type="number" id="baseObtusangulo" placeholder="Ej. 6"></div>
+            <div class="grupo-input"><label>Lado B (cm):</label><input type="number" id="alturaObtusangulo" placeholder="Ej. 9"></div>
+            <div class="grupo-input"><label>Ángulo Obtuso (Grados °):</label><input type="number" id="angObtusangulo" placeholder="Ej. 120"></div>
+            <button class="btn-calcular" onclick="calcularObtusangulo()">Calcular Propiedades</button>
+            <div id="res-obtusangulo" class="resultado-caja hidden">
+                <div id="datos-res-obtusangulo"></div>
+                <button class="btn-procedimiento" onclick="toggleProcedimiento('proc-obtusangulo')">📖 Analizar II Cuadrante</button>
+            </div>
+            <div id="proc-obtusangulo" class="hoja-cuadriculada hidden"></div>
+        </div>
+
+        <footer class="footer-autores">
+            <hr class="separador-footer">
+            <p class="mencion-grado">🚀 <b>4to Año de Telemática</b> — Proyecto de Desarrollo</p>
+            <div class="grid-autores">
+                <div class="autor-tag">👤 Ronny Sánchez</div>
+                <div class="autor-tag">👤 Angel Rosales</div>
+                <div class="autor-tag">👤 Mayvi Monteverde</div>
+                <div class="autor-tag">👤 Iliane Villamizar</div>
+                <div class="autor-tag">👤 Aslhey Mora</div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const rad = (deg) => deg * (Math.PI / 180);
+        const deg = (rad) => rad * (180 / Math.PI);
+
+        function cambiarPantalla(tipo) {
+            document.getElementById('menu-principal').classList.add('hidden');
+            document.getElementById('btn-volver-menu').classList.remove('hidden');
+            document.querySelectorAll('.vista-resolucion').forEach(p => p.classList.add('hidden'));
+            const pantallaObjetivo = document.getElementById('pantalla-' + tipo);
+            if (pantallaObjetivo) pantallaObjetivo.classList.remove('hidden');
+        }
+
+        function mostrarMenu() {
+            document.querySelectorAll('.vista-resolucion').forEach(p => p.classList.add('hidden'));
+            document.getElementById('btn-volver-menu').classList.add('hidden');
+            document.getElementById('menu-principal').classList.remove('hidden');
+            document.querySelectorAll('input').forEach(i => i.value = '');
+            document.querySelectorAll('.resultado-caja').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.hoja-cuadriculada').forEach(h => h.classList.add('hidden'));
+        }
+
+        function toggleProcedimiento(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+            if(!el.classList.contains('hidden')){
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function generarTrianguloSVG(ladoA, ladoB, ladoC, angA, angB, angC, colorStroke) {
+            const anchoMax = 260; 
+            const altoMax = 180;
+            const escala = Math.min((anchoMax - 60) / ladoA, (altoMax - 60) / (ladoB * Math.sin(rad(angA))));
+            
+            const x1 = 35;
+            const y1 = altoMax - 30;
+            const x2 = x1 + (ladoA * escala);
+            const y2 = y1;
+            const x3 = x1 + (ladoB * escala * Math.cos(rad(angA)));
+            const y3 = y1 - (ladoB * escala * Math.sin(rad(angA)));
+
+            const cx = (x1 + x2 + x3) / 3;
+            const cy = (y1 + y2 + y3) / 3;
+            const posI = (vx, vy, f) => ({ x: vx + (cx - vx) * f, y: vy + (cy - vy) * f });
+            
+            const tA = posI(x1, y1, 0.32); 
+            const tB = posI(x2, y2, 0.32); 
+            const tC = posI(x3, y3, 0.28);
+
+            return `
+                <div style="margin-top: 15px; text-align: center;">
+                    <svg width="${anchoMax}" height="${altoMax}" style="background: #fafafa; border: 1px solid #ddd; border-radius: 8px;">
+                        <rect width="100%" height="100%" fill="#fcfcfc" />
+                        <polygon points="${x1},${y1} ${x2},${y2} ${x3},${y3}" style="fill:rgba(108, 92, 231, 0.1); stroke:${colorStroke}; stroke-width:3; stroke-linejoin:round;" />
+                        <text x="${(x1+x2)/2}" y="${y1+18}" fill="#555" font-size="11" font-weight="bold" text-anchor="middle">${ladoA.toFixed(1)}cm</text>
+                        <text x="${(x1+x3)/2 - 10}" y="${(y1+y3)/2}" fill="#555" font-size="11" font-weight="bold" text-anchor="middle">${ladoB.toFixed(1)}cm</text>
+                        <text x="${(x2+x3)/2 + 10}" y="${(y2+y3)/2}" fill="#555" font-size="11" font-weight="bold" text-anchor="middle">${ladoC.toFixed(1)}cm</text>
+                        <text x="${tA.x}" y="${tA.y + 4}" fill="#e74c3c" font-size="10" font-weight="bold" text-anchor="middle">${angA.toFixed(0)}°</text>
+                        <text x="${tB.x}" y="${tB.y + 4}" fill="#e74c3c" font-size="10" font-weight="bold" text-anchor="middle">${angB.toFixed(0)}°</text>
+                        <text x="${tC.x}" y="${tC.y + 4}" fill="#e74c3c" font-size="10" font-weight="bold" text-anchor="middle">${angC.toFixed(0)}°</text>
+                    </svg>
+                </div>`;
+        }
+
+        function calcularEquilatero() {
+            const l = parseFloat(document.getElementById('ladoEquilatero').value);
+            if(isNaN(l) || l <= 0) return alert("Dato no válido.");
+            const p = l * 3;
+            const a = (Math.sqrt(3)/4) * l * l;
+            document.getElementById('datos-res-equilatero').innerHTML = `<h3>Resultados:</h3><p>Lados: 3x <b>${l}cm</b> | Ángulos: 3x <b>60°</b></p>`;
+            document.getElementById('proc-equilatero').innerHTML = `<h4>📋 DESARROLLO PASO A PASO:</h4>
+                <p><b>1. Propiedad:</b> En un equilátero, ∠A=∠B=∠C = 180/3 = <b>60°</b>.</p>
+                <p><b>2. Perímetro:</b> P = 3 × L = 3 × ${l} = <b>${p.toFixed(2)} cm</b></p>
+                <p><b>3. Área:</b> A = (√3 / 4) × L² = 0.433 × ${l*l} = <b>${a.toFixed(2)} cm²</b></p>
+                ${generarTrianguloSVG(l, l, l, 60, 60, 60, '#e17055')}`;
+            document.getElementById('res-equilatero').classList.remove('hidden');
+        }
+
+        function calcularIsosceles() {
+            const l = parseFloat(document.getElementById('ladoLadosIsosceles').value);
+            const b = parseFloat(document.getElementById('baseIsosceles').value);
+            if(isNaN(l) || isNaN(b) || b >= 2*l) return alert("Base demasiado larga.");
+            const h = Math.sqrt(l*l - (b/2)*(b/2));
+            const aB = deg(Math.acos((b/2)/l));
+            const aV = 180 - 2*aB;
+            document.getElementById('datos-res-isosceles').innerHTML = `<h3>Resultados:</h3><p>Ángulos Base: <b>${aB.toFixed(1)}°</b> | Altura: <b>${h.toFixed(2)}cm</b></p>`;
+            document.getElementById('proc-isosceles').innerHTML = `<h4>📋 DESARROLLO PASO A PASO:</h4>
+                <p><b>1. Altura (Pitágoras):</b> h = √(L² - (b/2)²) = √(${l}² - ${b/2}²) = <b>${h.toFixed(2)} cm</b></p>
+                <p><b>2. Trigonometría:</b> ∠Base = arccos((b/2)/L) = <b>${aB.toFixed(1)}°</b></p>
+                <p><b>3. Vértice:</b> 180 - (2 × ${aB.toFixed(1)}) = <b>${aV.toFixed(1)}°</b></p>
+                ${generarTrianguloSVG(b, l, l, aB, aB, aV, '#2ecc71')}`;
+            document.getElementById('res-isosceles').classList.remove('hidden');
+        }
+
+        function calcularEscaleno() {
+            const a = parseFloat(document.getElementById('escalenoA').value);
+            const b = parseFloat(document.getElementById('escalenoB').value);
+            const c = parseFloat(document.getElementById('escalenoC').value);
+            if(isNaN(a) || isNaN(b) || isNaN(c) || a+b<=c || a+c<=b || b+c<=a) return alert("No forma triángulo.");
+            const aA = deg(Math.acos((b*b + c*c - a*a)/(2*b*c)));
+            const aB = deg(Math.acos((a*a + c*c - b*b)/(2*a*c)));
+            const aC = 180 - aA - aB;
+            document.getElementById('datos-res-escaleno').innerHTML = `<h3>Resultados:</h3><p>∠A: ${aA.toFixed(1)}° | ∠B: ${aB.toFixed(1)}° | ∠C: ${aC.toFixed(1)}°</p>`;
+            document.getElementById('proc-escaleno').innerHTML = `<h4>📋 DESARROLLO PASO A PASO:</h4>
+                <p><b>1. Ley de Cosenos:</b> cos(A) = (b²+c²-a²) / 2bc</p>
+                <p><code>∠A = arccos((${b}²+${c}²-${a}²) / (2·${b}·${c})) = ${aA.toFixed(1)}°</code></p>
+                <p><b>2. Segundo Ángulo:</b> ∠B = arccos((${a}²+${c}²-${b}²) / (2·${a}·${c})) = <b>${aB.toFixed(1)}°</b></p>
+                ${generarTrianguloSVG(a, b, c, aA, aB, aC, '#f1c40f')}`;
+            document.getElementById('res-escaleno').classList.remove('hidden');
+        }
+
+        function calcularRectangulo() {
+            const c1 = parseFloat(document.getElementById('cateto1').value);
+            const c2 = parseFloat(document.getElementById('cateto2').value);
+            if(isNaN(c1) || isNaN(c2) || c1 <= 0 || c2 <= 0) return alert("Datos no válidos.");
+            
+            const h = Math.sqrt(c1*c1 + c2*c2);
+            const a1 = deg(Math.atan(c2/c1)); 
+            const a2 = 90 - a1;
+            
+            const sen = c2/h; 
+            const cos = c1/h; 
+            const tan = c2/c1;
+            const cot = c1/c2; 
+            const sec = h/c1;  
+            const csc = h/c2;  
+
+            document.getElementById('datos-res-rectangulo').innerHTML = `
+                <h3>Razones Trigonométricas (∠${a1.toFixed(1)}°):</h3>
+                <p>• <b>Seno (sen):</b> ${sen.toFixed(4)} | <b>Cosecante (csc):</b> ${csc.toFixed(4)}</p>
+                <p>• <b>Coseno (cos):</b> ${cos.toFixed(4)} | <b>Secante (sec):</b> ${sec.toFixed(4)}</p>
+                <p>• <b>Tangente (tan):</b> ${tan.toFixed(4)} | <b>Cotangente (cot):</b> ${cot.toFixed(4)}</p>
+            `;
+
+            document.getElementById('proc-rectangulo').innerHTML = `
+                <h4>📋 DESARROLLO PASO A PASO:</h4>
+                <p><b>1. Hipotenusa (Teorema de Pitágoras):</b><br>
+                <code>H = √(c1² + c2²) = √(${c1}² + ${c2}²) = ${h.toFixed(2)} cm</code></p>
+                
+                <p><b>2. Fórmulas de las Razones Recíprocas:</b><br>
+                <code>Cotangente (Ady/Op) = ${c1} / ${c2} = <b>${cot.toFixed(4)}</b></code><br>
+                <code>Secante (Hip/Ady) = ${h.toFixed(2)} / ${c1} = <b>${sec.toFixed(4)}</b></code><br>
+                <code>Cosecante (Hip/Op) = ${h.toFixed(2)} / ${c2} = <b>${csc.toFixed(4)}</b></code></p>
+                
+                <hr style="border:1px dashed #f1c40f;">
+                <h4>📐 GRÁFICO DINÁMICO:</h4>
+                ${generarTrianguloSVG(c1, c2, h, 90, a1, a2, '#6c5ce7')}`;
+            
+            document.getElementById('res-rectangulo').classList.remove('hidden');
+        }
+
+        // CONTROL DE PESTAÑAS DEL ACUTÁNGULO
+        let metodoAcutanguloActivo = 'LAL';
+
+        function seleccionarMetodoAcutangulo(metodo) {
+            metodoAcutanguloActivo = metodo;
+            const btnLAL = document.getElementById('btn-tab-lal');
+            const btnALA = document.getElementById('btn-tab-ala');
+            const formLAL = document.getElementById('form-acutangulo-lal');
+            const formALA = document.getElementById('form-acutangulo-ala');
+
+            document.getElementById('res-acutangulo').classList.add('hidden');
+            document.getElementById('proc-acutangulo').classList.add('hidden');
+
+            if (metodo === 'LAL') {
+                formLAL.classList.remove('hidden');
+                formALA.classList.add('hidden');
+                btnLAL.style.background = '#2980b9';
+                btnALA.style.background = '#7f8c8d';
+            } else {
+                formLAL.classList.add('hidden');
+                formALA.classList.remove('hidden');
+                btnLAL.style.background = '#7f8c8d';
+                btnALA.style.background = '#2980b9';
+            }
+        }
+
+        function procesarAcutangulo() {
+            if (metodoAcutanguloActivo === 'LAL') {
+                calcularAcutanguloLAL();
+            } else {
+                calcularAcutanguloALA();
+            }
+        }
+
+        function calcularAcutanguloLAL() {
+            const a = parseFloat(document.getElementById('baseAcutangulo').value);
+            const b = parseFloat(document.getElementById('alturaAcutangulo').value);
+            const aC = parseFloat(document.getElementById('angAcutangulo').value);
+
+            if(isNaN(a) || isNaN(b) || isNaN(aC) || aC >= 90 || aC <= 0) return alert("Datos incorrectos para acutángulo.");
+
+            const c = Math.sqrt(a*a + b*b - 2*a*b*Math.cos(rad(aC)));
+            const aA = deg(Math.acos((b*b + c*c - a*a)/(2*b*c)));
+            const aB = 180 - aA - aC;
+
+            document.getElementById('datos-res-acutangulo').innerHTML = `
+                <h3>Resultados (Caso Lado-Ángulo-Lado):</h3>
+                <p>Lado restante C: <b>${c.toFixed(2)} cm</b></p>
+                <p>Ángulos calculados: ∠A = <b>${aA.toFixed(1)}°</b> | ∠B = <b>${aB.toFixed(1)}°</b></p>
+            `;
+            document.getElementById('proc-acutangulo').innerHTML = `
+                <h4>📋 DESARROLLO PASO A PASO (LAL):</h4>
+                <p><b>1. Encontrar Lado C (Ley de Cosenos):</b><br><code>c = √(a² + b² - 2ab·cos(C))</code> = <b>${c.toFixed(2)} cm</b></p>
+                <p><b>2. Encontrar Ángulos restantes (Ley de Senos):</b><br>Calculando las proporciones nos da: ∠A = <b>${aA.toFixed(1)}°</b> y ∠B = <b>${aB.toFixed(1)}°</b></p>
+                ${generarTrianguloSVG(a, b, c, aA, aB, aC, '#2980b9')}
+            `;
+            document.getElementById('res-acutangulo').classList.remove('hidden');
+        }
+
+        function calcularAcutanguloALA() {
+            const aA = parseFloat(document.getElementById('angA_ALA').value);
+            const c = parseFloat(document.getElementById('ladoC_ALA').value);
+            const aB = parseFloat(document.getElementById('angB_ALA').value);
+
+            if(isNaN(aA) || isNaN(c) || isNaN(aB) || aA >= 90 || aB >= 90 || (aA + aB) >= 180) {
+                return alert("Los ángulos no pertenecen a un triángulo acutángulo válido.");
+            }
+
+            const aC = 180 - aA - aB;
+            if(aC >= 90) return alert("El tercer ángulo calculado es mayor o igual a 90°. No es acutángulo.");
+
+            const a = (c * Math.sin(rad(aA))) / Math.sin(rad(aC));
+            const b = (c * Math.sin(rad(aB))) / Math.sin(rad(aC));
+
+            document.getElementById('datos-res-acutangulo').innerHTML = `
+                <h3>Resultados (Caso Ángulo-Lado-Ángulo):</h3>
+                <p>Tercer Ángulo calculado: ∠C = <b>${aC.toFixed(1)}°</b></p>
+                <p>Lados obtenidos por Ley de Senos: Lado a = <b>${a.toFixed(2)} cm</b> | Lado b = <b>${b.toFixed(2)} cm</b></p>
+            `;
+            document.getElementById('proc-acutangulo').innerHTML = `
+                <h4>📋 DESARROLLO PASO A PASO (ALA):</h4>
+                <p><b>1. Encontrar el Tercer Ángulo:</b><br>Sabemos que la suma interna de todo triángulo es 180°:<br>
+                <code>∠C = 180° - ∠A - ∠B = 180° - ${aA}° - ${aB}° = <b>${aC.toFixed(1)}°</b></code></p>
+                
+                <p><b>2. Aplicar Ley de los Senos para los Lados:</b><br>
+                La fórmula dicta que: <code>a / sen(A) = b / sen(B) = c / sen(C)</code><br><br>
+                • Despejando Lado a: <code>a = (${c} · sen(${aA}°)) / sen(${aC.toFixed(1)}°)</code> = <b>${a.toFixed(2)} cm</b><br>
+                • Despejando Lado b: <code>b = (${c} · sen(${aB}°)) / sen(${aC.toFixed(1)}°)</code> = <b>${b.toFixed(2)} cm</b></p>
+                
+                <hr style="border:1px dashed #f1c40f;">
+                <h4>📐 GRÁFICO DINÁMICO:</h4>
+                ${generarTrianguloSVG(a, b, c, aA, aB, aC, '#2980b9')}
+            `;
+            document.getElementById('res-acutangulo').classList.remove('hidden');
+        }
+
+        function calcularObtusangulo() {
+            const a = parseFloat(document.getElementById('baseObtusangulo').value);
+            const b = parseFloat(document.getElementById('alturaObtusangulo').value);
+            const aC = parseFloat(document.getElementById('angObtusangulo').value);
+            if(isNaN(a) || isNaN(b) || isNaN(aC) || aC <= 90 || aC >= 180) return alert("Ángulo incorrecto.");
+            const c = Math.sqrt(a*a + b*b - 2*a*b*Math.cos(rad(aC)));
+            const aA = deg(Math.acos((b*b + c*c - a*a)/(2*b*c)));
+            const aB = 180 - aA - aC;
+            document.getElementById('datos-res-obtusangulo').innerHTML = `<h3>Análisis:</h3><p>Lado Mayor: <b>${c.toFixed(2)}cm</b> | Cos(${aC}°): <b>${Math.cos(rad(aC)).toFixed(4)}</b></p>`;
+            document.getElementById('proc-obtusangulo').innerHTML = `<h4>📋 DESARROLLO PASO A PASO:</h4>
+                <p><b>1. Ángulo Obtuso:</b> Como ∠${aC}° > 90°, el Coseno es negativo (II Cuadrante).</p>
+                <p><b>2. Lado C:</b> c = √(a²+b²-2ab·cos(${aC})) = <b>${c.toFixed(2)} cm</b></p>
+                ${generarTrianguloSVG(a, b, c, aA, aB, aC, '#e67e22')}`;
+            document.getElementById('res-obtusangulo').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

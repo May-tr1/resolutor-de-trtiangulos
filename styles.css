@@ -1,0 +1,374 @@
+/* ========================================== */
+/* ESTILOS GLOBALES Y FONDOS DINÁMICOS        */
+/* ========================================== */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* Un fondo sutil con un degradado moderno */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    margin: 0;
+    padding: 30px 10px;
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 35px;
+    border-radius: 20px; /* Bordes más suaves */
+    /* Sombra premium para dar efecto de elevación */
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================== */
+/* ENCABEZADO LLENO DE COLOR                  */
+/* ========================================== */
+.header-colegio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.titulo-colegio {
+    font-size: 2.6rem;
+    /* Texto con degradado brillante */
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    -webkit-background-clip: text; /* Para Chrome, Safari y Edge */
+    background-clip: text;         /* PROPIEDAD ESTÁNDAR (Añade esta línea) */
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    filter: drop-shadow(0px 2px 4px rgba(108, 92, 231, 0.15));
+}
+
+.titulos-app h2 {
+    font-size: 1.6rem;
+    color: #34495e;
+    margin: 6px 0;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin: 0;
+    font-style: italic;
+}
+
+.separador-institucional {
+    border: 0;
+    height: 3px;
+    /* Línea divisoria multicolor */
+    background: linear-gradient(to right, #e17055, #2ecc71, #6c5ce7, #f1c40f);
+    margin-bottom: 35px;
+    border-radius: 2px;
+}
+
+/* ========================================== */
+/* SECCIONES Y TARJETAS DEL MENÚ              */
+/* ========================================== */
+h2 {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    position: relative;
+    padding-left: 15px;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+/* Decoración de color al lado de los títulos de secciones */
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 6px;
+    background: #6c5ce7;
+    border-radius: 4px;
+}
+
+.grid-triangulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.tarjeta {
+    background: #ffffff;
+    border: 1px solid #e8edf5;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Línea de color superior en cada tarjeta al pasar el ratón */
+.tarjeta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #6c5ce7;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover::after {
+    transform: scaleX(1);
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(108, 92, 231, 0.18);
+    border-color: #d6deeb;
+}
+
+.tarjeta h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.25rem;
+}
+
+.tarjeta p {
+    font-size: 0.92rem;
+    color: #64748b;
+    line-height: 1.5;
+    min-height: 54px;
+}
+
+/* IMÁGENES COMPACTAS CON PARTICIÓN DE COLOR */
+.img-triangulo-menu {
+    width: 70px;
+    height: 70px;
+    margin: 12px auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 50%; /* Transforma el respaldo en círculos de color */
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover .img-triangulo-menu {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* ========================================== */
+/* BOTONES PERSONALIZADOS CON VIDA            */
+/* ========================================== */
+.btn-seleccionar, .btn-calcular, .btn-procedimiento, .btn-regresar {
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px; /* Botones tipo píldora, más modernos */
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+    transition: all 0.2s ease;
+}
+
+.btn-seleccionar {
+    background: linear-gradient(135deg, #6c5ce7 0%, #5b4cc4 100%);
+    width: 80%;
+}
+
+.btn-seleccionar:hover {
+    background: linear-gradient(135deg, #5b4cc4 0%, #4a3cb3 100%);
+    box-shadow: 0 6px 15px rgba(108, 92, 231, 0.35);
+    transform: scale(1.03);
+}
+
+.btn-calcular {
+    background: linear-gradient(135deg, #00b894 0%, #009473 100%);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.25);
+    border-radius: 8px;
+    width: 100%;
+    padding: 14px;
+}
+
+.btn-calcular:hover {
+    background: linear-gradient(135deg, #009473 0%, #00755a 100%);
+    box-shadow: 0 6px 18px rgba(0, 184, 148, 0.4);
+}
+
+.btn-procedimiento {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    box-shadow: 0 4px 12px rgba(52, 73, 94, 0.2);
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-procedimiento:hover {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+}
+
+.btn-regresar {
+    background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+    box-shadow: 0 4px 12px rgba(255, 118, 117, 0.3);
+    font-size: 0.85rem;
+}
+
+.btn-regresar:hover {
+    background: linear-gradient(135deg, #d63031 0%, #b31e1f 100%);
+    box-shadow: 0 6px 15px rgba(255, 118, 117, 0.45);
+}
+
+/* FORMULARIOS */
+.grupo-input {
+    margin-bottom: 20px;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #4a5568;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.grupo-input input:focus {
+    border-color: #6c5ce7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
+    outline: none;
+}
+
+/* ========================================== */
+/* SECCIÓN DE RESULTADOS CON VIDA             */
+/* ========================================== */
+.resultado-caja {
+    background: linear-gradient(to right, #f0fff4, #ffffff);
+    border-left: 6px solid #2ecc71;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 25px;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.08);
+}
+
+.resultado-caja h3 {
+    color: #27ae60;
+    margin-top: 0;
+}
+
+.hoja-cuadriculada {
+    background-color: #fffdf5; /* Color hoja de examen vieja */
+    border: 1px dashed #f1c40f;
+    border-left: 6px solid #f1c40f;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(241, 196, 15, 0.08);
+}
+
+.hoja-cuadriculada code {
+    background: #fef9e7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #b7950b;
+    border: 1px solid #f9e79f;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================== */
+/* CRÉDITOS PREMIUM PARA LOS INTEGRANTES      */
+/* ========================================== */
+.footer-autores {
+    margin-top: 50px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.separador-footer {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+    margin-bottom: 25px;
+}
+
+.mencion-grado {
+    font-size: 1rem;
+    color: #6c5ce7;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+}
+
+.grid-autores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.autor-tag {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: #475569;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: all 0.25s ease;
+}
+
+.autor-tag:hover {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: white;
+    border-color: #6c5ce7;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(108, 92, 231, 0.25);
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    .header-colegio {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+/* CONTROL DE TAMANOS DEL LOGO INSTITUCIONAL */
+.logo-escuela {
+    width: 60px;          /* <-- CAMBIA ESTE NÚMERO (Ancho del logo) */
+    height: 60px;         /* <-- CAMBIA ESTE NÚMERO (Alto del logo) */
+    object-fit: contain;  /* Evita que la imagen se estire o se deforme */
+    border-radius: 8px;   /* Suaviza un poco las esquinas del logo */
+}

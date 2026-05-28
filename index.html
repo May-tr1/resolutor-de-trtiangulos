@@ -472,23 +472,5 @@
         }
     </script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            // Detecta automáticamente la URL actual donde esté corriendo la página
-            let urlActual = window.location.href;
-
-            // Si lo estás probando de forma local en tu computadora, usará una IP de simulación,
-            // pero cuando esté subida a internet, tomará el enlace real automáticamente.
-            new QRCode(document.getElementById("codigo-qr"), {
-                text: urlActual,
-                width: 128,
-                height: 128,
-                colorDark : "#2c3e50",  // Color del QR
-                colorLight : "#ffffff", // Color de fondo
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        });
-    </script>
 </html>
